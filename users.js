@@ -1,7 +1,6 @@
 fetch('https://jsonplaceholder.typicode.com/users')
   .then(res => res.json())
   .then(users => {
-    console.log(users);
     const pageContent = document.querySelector('#page-content');
     
     const usersList = document.createElement('ul');
@@ -10,11 +9,14 @@ fetch('https://jsonplaceholder.typicode.com/users')
     pageContent.append(usersList);
 
     users.forEach(user => {
-      console.log(user.name);
-      const userItem = document.createElement('li');
-      userItem.classList.add('user-item');
-      userItem.innerHTML = `<a href="./user.html">${user.name} (10)</a>`;
-
-      usersList.append(userItem);
+      fetch(`https://jsonplaceholder.typicode.com/users/${user.id}/posts`)
+        .then(res => res.json())
+        .then(posts => {
+          const userItem = document.createElement('li');
+          userItem.classList.add('user-item');
+          userItem.innerHTML = `<a href="./user.html">${user.name} (${posts.length})</a>`;
+    
+          usersList.append(userItem);
+        })
     })
   })
