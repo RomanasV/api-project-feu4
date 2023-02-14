@@ -1,4 +1,4 @@
-fetch('https://jsonplaceholder.typicode.com/posts?_limit=15')
+fetch('https://jsonplaceholder.typicode.com/posts?_limit=15&_expand=user')
   .then(res => res.json())
   .then(posts => {
     const pageContent = document.querySelector('#page-content');
@@ -9,24 +9,21 @@ fetch('https://jsonplaceholder.typicode.com/posts?_limit=15')
     pageContent.append(postsList);
 
     posts.map(post => {
+      const userName = post.user.name;
+      
+      const postItem = document.createElement('li');
+      postItem.classList.add('post-item');
+      
+      const postLink = document.createElement('a');
+      postLink.textContent = post.title;
+      postLink.href = './post.html';
 
-      fetch(`https://jsonplaceholder.typicode.com/users/${post.userId}`)
-        .then(res => res.json())
-        .then(user => {
-          const postItem = document.createElement('li');
-          postItem.classList.add('post-item');
-          
-          const postLink = document.createElement('a');
-          postLink.textContent = post.title;
-          postLink.href = './post.html';
+      const postAuthor = document.createElement('a');
+      postAuthor.textContent = `${userName}`;
+      postAuthor.href = './user.html';
 
-          const postAuthor = document.createElement('a');
-          postAuthor.textContent = `${user.name}`;
-          postAuthor.href = './user.html';
+      postItem.append(postLink, ' - ', postAuthor);
 
-          postItem.append(postLink, ' - ', postAuthor);
-
-          postsList.append(postItem);
-        })
+      postsList.append(postItem);
     })
   })
