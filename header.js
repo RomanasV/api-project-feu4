@@ -1,3 +1,5 @@
+import { MENU_ITEMS } from './config.js';
+
 export function createPageMainHeader() {
   const header = document.createElement('header');
   const nav = document.createElement('nav');
@@ -5,26 +7,7 @@ export function createPageMainHeader() {
   const menuList = document.createElement('ul');
   menuList.classList.add('menu');
 
-  const menuItems = [
-    {
-      title: 'Main',
-      path: 'index.html',
-    },
-    {
-      title: 'Posts',
-      path: 'posts.html',
-    },
-    {
-      title: 'Users',
-      path: 'users.html',
-    },
-    {
-      title: 'Albums',
-      path: 'albums.html',
-    },
-  ];
-
-  menuItems.forEach(menuItem => {
+  MENU_ITEMS.forEach(menuItem => {
     // let title = menuItem.title;
     // let path = menuItem.path;
     let { title, path } = menuItem;

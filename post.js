@@ -1,5 +1,6 @@
 import { createPageMainHeader } from './header.js';
 import { firstLetterUpperCase } from './functions.js';
+import { API_URL } from './config.js';
 
 async function init() {
   const pageContent = document.querySelector('#page-content');
@@ -11,7 +12,7 @@ async function init() {
   const urlParams = new URLSearchParams(queryParams);
   const id = urlParams.get('post_id');
 
-  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}?_embed=comments`);
+  const res = await fetch(`${API_URL}/posts/${id}?_embed=comments`);
   const post = await res.json();
   let { title, body, comments } = post;
 
