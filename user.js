@@ -1,5 +1,8 @@
 async function init() {
-  const id = 5;
+  const queryParams = location.search;
+  const urlParams = new URLSearchParams(queryParams);
+  const id = urlParams.get('user_id');
+  
   const res = await fetch(`https://jsonplaceholder.typicode.com/users/${id}?_embed=posts&_embed=albums`);
   const user = await res.json();
   console.log(user.posts);

@@ -21,11 +21,11 @@ function createPostsListElement(posts) {
     
     const postLink = document.createElement('a');
     postLink.textContent = post.title;
-    postLink.href = './post.html';
+    postLink.href = './post.html?post_id=' + post.id;
 
     const postAuthor = document.createElement('a');
     postAuthor.textContent = `${userName}`;
-    postAuthor.href = './user.html';
+    postAuthor.href = './user.html?user_id=' + post.userId;
 
     postItem.append(postLink, ' - ', postAuthor);
 
