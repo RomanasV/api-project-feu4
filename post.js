@@ -1,15 +1,20 @@
+import { createPageMainHeader } from './header.js';
+import { firstLetterUpperCase } from './functions.js';
+
 async function init() {
+  const pageContent = document.querySelector('#page-content');
+  pageContent.before(createPageMainHeader());
+
   // const urlParams = new URLSearchParams(location.search);
 
   const queryParams = location.search;
   const urlParams = new URLSearchParams(queryParams);
   const id = urlParams.get('post_id');
-  
+
   const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}?_embed=comments`);
   const post = await res.json();
   let { title, body, comments } = post;
 
-  const pageContent = document.querySelector('#page-content');
   const postWrapper = document.createElement('div');
   postWrapper.classList.add('post-wrapper');
   
@@ -17,11 +22,11 @@ async function init() {
 
   const postTitle = document.createElement('h1');
   postTitle.classList.add('post-title');
-  postTitle.textContent = title;
+  postTitle.textContent = firstLetterUpperCase(title);
 
   const postBody = document.createElement('p');
   postBody.classList.add('post-body');
-  postBody.textContent = body;
+  postBody.textContent = firstLetterUpperCase(body);
 
   postWrapper.append(post.id, postTitle, postBody);
 
