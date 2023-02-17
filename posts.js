@@ -1,9 +1,8 @@
 import { createPageMainHeader } from './header.js';
-import { firstLetterUpperCase } from './functions.js';
+import { firstLetterUpperCase, fetchData } from './functions.js';
 
 async function init() {
-  const res = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=15&_expand=user');
-  const posts = await res.json();
+  const posts = await fetchData('https://jsonplaceholder.typicode.com/posts?_limit=15&_expand=user');
 
   const pageContent = document.querySelector('#page-content');
   const header = createPageMainHeader();

@@ -1,6 +1,7 @@
+import { fetchData } from "./functions.js";
+
 async function init() {
-  const res = await fetch('https://jsonplaceholder.typicode.com/albums?_limit=30&_embed=photos&_expand=user');
-  const albums = await res.json();
+  const albums = await fetchData('https://jsonplaceholder.typicode.com/albums?_limit=30&_embed=photos&_expand=user');
 
   if (!albums.length || albums.length === 0) {
     return;

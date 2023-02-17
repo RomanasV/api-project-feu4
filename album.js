@@ -1,7 +1,8 @@
+import { fetchData } from "./functions.js";
+
 async function init() {
   const id = 7;
-  const res = await fetch(`https://jsonplaceholder.typicode.com/albums/${id}?_expand=user&_embed=photos`);
-  const album = await res.json();
+  const album = await fetchData(`https://jsonplaceholder.typicode.com/albums/${id}?_expand=user&_embed=photos`);
 
   console.log(album);
   console.log(album.title);

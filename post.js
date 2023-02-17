@@ -1,5 +1,5 @@
 import { createPageMainHeader } from './header.js';
-import { firstLetterUpperCase } from './functions.js';
+import { fetchData, firstLetterUpperCase } from './functions.js';
 import { API_URL } from './config.js';
 
 async function init() {
@@ -12,8 +12,7 @@ async function init() {
   const urlParams = new URLSearchParams(queryParams);
   const id = urlParams.get('post_id');
 
-  const res = await fetch(`${API_URL}/posts/${id}?_embed=comments`);
-  const post = await res.json();
+  const post = await fetchData(`${API_URL}/posts/${id}?_embed=comments`);
   let { title, body, comments } = post;
 
   const postWrapper = document.createElement('div');
