@@ -8,3 +8,11 @@ export async function fetchData(url) {
 
   return data;
 }
+
+export function getParams(param) {
+  const queryParams = location.search;
+  const urlParams = new URLSearchParams(queryParams);
+  const value = urlParams.get(param);
+
+  return value;
+}

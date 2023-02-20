@@ -1,5 +1,7 @@
+import { API_URL } from "./config.js";
+
 async function init() {
-  const res = await fetch('https://jsonplaceholder.typicode.com/users?_embed=posts');
+  const res = await fetch(`${API_URL}/users?_embed=posts`);
   const users = await res.json();
 
   const pageContent = document.querySelector('#page-content');

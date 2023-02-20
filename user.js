@@ -75,9 +75,6 @@ function renderPosts(posts, name) {
 }
 
 function renderAlbums(albums, name) {
-  console.log(albums);
-  console.log(name);
-
   const albumsWrapper = document.createElement('div');
   albumsWrapper.classList.add('albums-wrapper');
 
@@ -96,10 +93,6 @@ function renderAlbums(albums, name) {
   albumsList.classList.add('albums-list');
 
   albums.map(album => {
-    console.log(album);
-    console.log(album.title);
-    console.log(album.id);
-
     const albumItem = document.createElement('li');
     albumItem.classList.add('album-item');
 

@@ -1,8 +1,12 @@
 import { createPageMainHeader } from './header.js';
-import { firstLetterUpperCase, fetchData } from './functions.js';
+import { firstLetterUpperCase, fetchData, getParams } from './functions.js';
+import { API_URL } from './config.js';
 
 async function init() {
-  const posts = await fetchData('https://jsonplaceholder.typicode.com/posts?_limit=15&_expand=user');
+  const userId = getParams('user_id');
+  let userParamUrl = userId ? `&userId=${userId}` : '';
+  
+  const posts = await fetchData(`${API_URL}/posts?_limit=15&_expand=user${userParamUrl}`);
 
   const pageContent = document.querySelector('#page-content');
   const header = createPageMainHeader();
