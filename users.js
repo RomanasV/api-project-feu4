@@ -1,5 +1,5 @@
 import { API_URL } from "./config.js";
-import { createPageMainHeader } from "./header.js";
+import createPageMainHeader from "./header.js";
 
 async function init() {
   const res = await fetch(`${API_URL}/users?_embed=posts`);

@@ -1,5 +1,5 @@
 import { fetchData } from "./functions.js";
-import { createPageMainHeader } from "./header.js";
+import createPageMainHeader from "./header.js";
 
 async function init() {
   const albums = await fetchData('https://jsonplaceholder.typicode.com/albums?_limit=30&_embed=photos&_expand=user');

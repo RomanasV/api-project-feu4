@@ -1,6 +1,7 @@
 import { MENU_ITEMS } from './config.js';
+import searchForm from './searchForm.js';
 
-function header() {
+function header(hideSearchForm) {
   const headerElement = document.createElement('header');
   const nav = document.createElement('nav');
   nav.classList.add('main-navigation');
@@ -26,28 +27,12 @@ function header() {
   })
 
   nav.append(menuList);
-  headerElement.append(searchForm(), nav);
+  
+  if (!hideSearchForm) {
+    headerElement.append(searchForm());
+  }
+  headerElement.append(nav);
   return headerElement;
-}
-
-function searchForm() {
-  const form = document.createElement('form');
-  form.classList.add('search-form');
-  // form.setAttribute('action', './search.html');
-  form.action = './search.html';
-
-  const searchInput = document.createElement('input');
-  searchInput.type = 'text';
-  searchInput.placeholder = 'Search...';
-  searchInput.name = 'search-query';
-
-  const submitButton = document.createElement('button');
-  submitButton.type = 'submit';
-  submitButton.textContent = 'Search';
-
-  form.append(searchInput, submitButton);
-
-  return form;
 }
 
 export default header;
