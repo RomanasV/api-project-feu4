@@ -17,4 +17,8 @@ export const MENU_ITEMS = [
     title: 'Albums',
     path: 'albums.html',
   },
+  {
+    title: 'Search',
+    path: 'search.html',
+  }
 ];

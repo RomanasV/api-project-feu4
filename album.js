@@ -1,31 +1,52 @@
-import { fetchData } from "./functions.js";
+import { fetchData, firstLetterUpperCase } from './functions.js';
+import createPageMainHeader from './header.js';
 
 async function init() {
   const id = 7;
   const album = await fetchData(`https://jsonplaceholder.typicode.com/albums/${id}?_expand=user&_embed=photos`);
 
-  console.log(album);
-  console.log(album.title);
-  console.log(album.photos);
-  console.log(album.user);
+  const pageContent = document.querySelector('#page-content');
+
+  pageContent.before(createPageMainHeader());
+
+  const albumWrapper = renderAlbumPage(album);
+
+  pageContent.append(albumWrapper);
+}
+
+function renderAlbumPage(album) {
+  const albumWrapper = document.createElement('div');
+  albumWrapper.classList.add('album-wrapper');
 
   let { title, photos, user } = album;
-  console.log(title);
-  console.log(photos);
-  console.log(user);
-  console.log(user.name);
+  const albumTitle = document.createElement('h1');
+  albumTitle.textContent = firstLetterUpperCase(title);
+
+  const albumAuthor = document.createElement('span');
+  albumAuthor.innerHTML = `Album created by <a href="./user.html?user_id=${user.id}">${user.name}</a>`;
+
+  const albumPhotosList = document.createElement('div');
+  albumPhotosList.classList.add('album-photos-list');
+
+  albumWrapper.append(albumTitle, albumAuthor, albumPhotosList);
 
   photos.map(photo => {
-    console.log(photo);
-    console.log(photo.title);
-    console.log(photo.thumbnailUrl);
-    console.log(photo.url);
-
     let { title, thumbnailUrl, url } = photo;
-    console.log(title);
-    console.log(thumbnailUrl);
-    console.log(url);
+
+    const photoLink = document.createElement('a');
+    photoLink.target = '_blank';
+    photoLink.href = url;
+
+    const photoElement = document.createElement('img');
+    photoElement.src = thumbnailUrl;
+    photoElement.alt = title;
+
+    photoLink.append(photoElement);
+
+    albumPhotosList.append(photoLink);
   })
+
+  return albumWrapper;
 }
 
 init();

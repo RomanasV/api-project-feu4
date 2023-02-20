@@ -1,5 +1,6 @@
 import { API_URL } from './config.js';
 import { fetchData, firstLetterUpperCase } from './functions.js';
+import { createPageMainHeader } from './header.js';
 
 async function init() {
   const queryParams = location.search;
@@ -9,6 +10,9 @@ async function init() {
   const user = await fetchData(`${API_URL}/users/${id}?_embed=posts&_embed=albums`);
 
   const pageContent = document.querySelector('#page-content');
+
+  pageContent.before(createPageMainHeader());
+
   const userInfo = renderUserInfo(user);
   const postsWrapper = renderPosts(user.posts, user.name);
   const albumsWrapper = renderAlbums(user.albums, user.name);
