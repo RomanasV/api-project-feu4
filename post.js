@@ -67,7 +67,7 @@ function renderPostComments(comments) {
   commentsList.classList.add('comments-list');
   
   comments.map(comment => {
-    let { body, email, name } = comment;
+    let { body, email, name, id } = comment;
 
     const commentItem = document.createElement('div');
     commentItem.classList.add('comment-item');
@@ -76,6 +76,19 @@ function renderPostComments(comments) {
                              <span class="comment-author">Email: ${email}</span>
                              <p class="comment-body">${firstLetterUpperCase(body)}</p>`;
 
+    const removeButton = document.createElement('button');
+    removeButton.classList.add('remove-button');
+    removeButton.textContent = 'Remove';
+
+    removeButton.addEventListener('click', () => {
+      fetchData(`${API_URL}/comments/${id}`, {
+        method: 'DELETE',
+      })
+
+      commentItem.remove();
+    })
+
+    commentItem.append(removeButton);
     commentsList.append(commentItem);
   })
 
