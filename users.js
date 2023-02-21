@@ -8,6 +8,7 @@ async function init() {
   const pageContent = document.querySelector('#page-content');
   const header = createPageMainHeader();
   const usersList = createListElement(users);
+  
   pageContent.append(usersList);
   pageContent.before(header);
 }

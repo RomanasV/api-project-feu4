@@ -8,6 +8,25 @@
 </head>
 <body>
 
+  <form id="create-post-form">
+    <div class="form-control">
+      <label for="title">Post Title:</label>
+      <input type="text" name="title" id="title">
+    </div>
+
+    <div class="form-control">
+      <label for="body">Post Body:</label>
+      <textarea name="body" id="body" cols="30" rows="5"></textarea>
+    </div>
+
+    <div class="form-control">
+      <label for="user">Post Author:</label>  
+      <select name="user" id="user"></select>
+    </div>
+
+    <input id="submit" type="submit" value="Create Post" disabled>
+  </form>
+
   <script type="module" src="./create-post.js"></script>
 </body>
 </html>
