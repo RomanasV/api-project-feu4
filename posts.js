@@ -1,4 +1,4 @@
-import { createPageMainHeader } from './header.js';
+import createPageMainHeader from './header.js';
 import { firstLetterUpperCase, fetchData, getParams } from './functions.js';
 import { API_URL } from './config.js';
 

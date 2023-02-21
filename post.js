@@ -1,4 +1,4 @@
-import { createPageMainHeader } from './header.js';
+import createPageMainHeader from './header.js';
 import { fetchData, firstLetterUpperCase, getParams } from './functions.js';
 import { API_URL } from './config.js';
 
@@ -14,7 +14,7 @@ async function init() {
   const postWrapper = document.createElement('div');
   postWrapper.classList.add('post-wrapper');
 
-  const postContent = renderPostContent(title, body, user);
+  const postContent = renderPostContent(title, body, user, id);
   const postComments = renderPostComments(comments);
   const otherAuthorPosts = document.createElement('a');
   otherAuthorPosts.textContent = 'Other posts by ' + user.name;
@@ -24,7 +24,7 @@ async function init() {
   pageContent.append(postWrapper);
 }
 
-function renderPostContent(title, body, user) {
+function renderPostContent(title, body, user, id) {
   const postContent = document.createElement('div');
   postContent.classList.add('post-content');
 
@@ -39,7 +39,11 @@ function renderPostContent(title, body, user) {
   postBody.classList.add('post-body');
   postBody.textContent = firstLetterUpperCase(body);
 
-  postContent.append(postTitle, postAuthor, postBody);
+  const postEditLink = document.createElement('a');
+  postEditLink.textContent = 'Edit Post';
+  postEditLink.href = './edit-post.html?post_id=' + id;
+
+  postContent.append(postTitle, postAuthor, postBody, postEditLink);
 
   return postContent;
 }

@@ -36,7 +36,7 @@ async function init() {
       userId
     }
 
-    const newPost = await fetchData(`${API_URL}/posts?_expand=user`, {
+    const newPost = await fetchData(`${API_URL}/posts`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
@@ -50,7 +50,7 @@ async function init() {
     if (previousPostItem) {
       previousPostItem.remove();
     }
-    
+
     createPostForm.after(newPostElement);
 
     event.target.reset();
