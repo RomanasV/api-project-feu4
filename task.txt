@@ -144,3 +144,5 @@ PAGINATION:
 15. Panaudoti pagination kituose puslapiuose, kuriuose yra sąrašas duomenų.
 
 16. Sukurti select elementą, kuriame būtų galimybė pasirinkti po kiek postų (arba kitų duomenų) yra atvaizduojama viename puslapyje.
+
+pridedame nauja eilute
